@@ -9,7 +9,17 @@
     </head>
 
     <body>
-        <canvas id="drawCanvas" width=400 height=400 style="background-color: darkgrey"></canvas>
-        <script src="script.js"></script>
+        <canvas tabindex=1 id="drawCanvas" width=800 height=600 style="background-color: black"></canvas>
+        <canvas tabindex=1 id="otherCanvas" width=800 height=600 style="background-color: black"></canvas>
+        <!--<script src="script.js"></script>-->
+        <script>
+            var a = 6;
+            
+            var appCode = `importScripts("http://127.0.0.1:5500/bagel.js");var bagel=sandboxInit(800,600);class Square{create(){this.x=50,this.y=50}step(){this.x-=5*(this.bagel.keyboardCheck("KeyA")-this.bagel.keyboardCheck("KeyD")),this.y-=5*(this.bagel.keyboardCheck("KeyW")-this.bagel.keyboardCheck("KeyS"))}draw(){this.bagel.drawSetCol([255,255,255,255]),this.bagel.drawRect(this.x-20,this.y-20,this.x+20,this.y+20)}constructor(){bagel.createObject(this.create,this.step,this.draw)}}var square=new Square;bagel.tickStart();`
+            worldInit("drawCanvas", appCode);
+
+            var otherCode = `var t=3; console.log(t);console.log(a);importScripts("http://127.0.0.1:5500/bagel.js");var bagel=sandboxInit(800,600);class Square{create(){this.x=50,this.y=50}step(){this.x-=5*(this.bagel.keyboardCheck("KeyA")-this.bagel.keyboardCheck("KeyD")),this.y-=5*(this.bagel.keyboardCheck("KeyW")-this.bagel.keyboardCheck("KeyS"))}draw(){this.bagel.drawSetCol([150,150,150,255]),this.bagel.drawRect(this.x-20,this.y-20,this.x+20,this.y+20)}constructor(){bagel.createObject(this.create,this.step,this.draw)}}var square=new Square;bagel.tickStart();`
+            worldInit("otherCanvas", otherCode);
+        </script>
     </body>
 </html>
